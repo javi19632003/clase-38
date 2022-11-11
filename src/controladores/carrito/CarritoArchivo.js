@@ -1,4 +1,4 @@
-import { ContenedorArchivo } from '../../../modelos/index.js'
+import { ContenedorArchivo } from '../../persistencias/index.js'
 
 
 class CarritoArchivo extends ContenedorArchivo {

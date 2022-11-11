@@ -1,23 +1,10 @@
-import {Router} from 'express'
+import {Router}       from 'express'
 import {productosApi} from '../controladores/index.js'
 
 const rutaProductos = Router()
 
 // Mostrar todos o un solo producto según su id
-rutaProductos.get('/:id?', async (req, res) => {
-    try {
-        const {id} = req.params
-        if(id){
-            const producto = await productosApi.mostrarPorId(id)
-            return producto ? res.json(producto) : res.json({message: 'Producto no encontrado'})
-        }
-        const productos = await productosApi.mostrarTodos()
-        res.json(productos) 
-    } catch (error) {
-        res.json(error)
-    }
-
-})
+rutaProductos.get('/:id?', productosApi.mostrarPorId)
 
 // Dar de alta un nuevo producto
 rutaProductos.post('/', async (req, res) => {

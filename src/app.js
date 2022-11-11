@@ -71,8 +71,8 @@ passport.deserializeUser(function (id, done) {
 
 /*============================[Rutas]==================================*/
 app.use('/api/productos', rutaProductos)
-app.use('/api/carrito', rutaCarrito)
-app.use('/api/usuarios', rutaUsuarios)
+//app.use('/api/carrito', rutaCarrito)
+//app.use('/api/usuarios', rutaUsuarios)
 app.get("/protected", auth, (req, res) => {
   res.send("Estoy en /protected");
 });

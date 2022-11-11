@@ -1,14 +1,14 @@
-import { CarritoArchivo }  from "./daos/carrito/CarritoArchivo.js";
-import { CarritoMongo }    from "./daos/carrito/CarritoMongo.js";
-import { ProductoArchivo } from "./daos/productos/ProductoArchivo.js";
-import { ProductoMongo }   from "./daos/productos/ProductoMongo.js";
-import { UsuarioMongo }    from "./daos/usuarios/UsuarioMongo.js";
+import { CarritoArchivo }  from "./carrito/CarritoArchivo.js";
+import { CarritoMongo }    from "./carrito/CarritoMongo.js";
+import { ProductoArchivo } from "./productos/ProductoArchivo.js";
+import { ProductoMongo }   from "./productos/ProductoMongo.js";
+import { UsuarioMongo }    from "./usuarios/UsuarioMongo.js";
 
 const DATABASES = {
     mongo: {
-        carritoApi: new CarritoMongo(),
+        carritoApi:   new CarritoMongo(),
         productosApi: new ProductoMongo(),
-        usuarioApi: new UsuarioMongo()
+        usuarioApi:   new UsuarioMongo()
     },
     archivo: {
         carritoApi: new CarritoArchivo(),

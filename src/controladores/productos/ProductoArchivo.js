@@ -1,5 +1,4 @@
-//import { ContenedorArchivo } from "../../db/ContenedorArchivo.js"
-import { ContenedorArchivo } from "../../../modelos/index.js"
+import { ContenedorArchivo } from "../../persistencias/index.js"
 
 
 class ProductoArchivo extends ContenedorArchivo {

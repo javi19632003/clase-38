@@ -1,6 +1,6 @@
 import dotenv                   from "dotenv";
 import mongoose                 from "mongoose";
-import { productos }            from "./schemas/productos.js";
+//import { productos }            from "./schemas/productos.js";
 dotenv.config();
 
 if (process.env.SELECTED_DB == "mongo"){
@@ -27,6 +27,7 @@ class ContenedorMongo {
 /*   Funciones Generales */
 
     async mostrarTodos() {
+        console.log("mostrando")
         const docs = await this.coleccion.find();
         return docs 
      }
