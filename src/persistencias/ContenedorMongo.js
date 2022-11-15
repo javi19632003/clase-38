@@ -105,31 +105,28 @@ class ContenedorMongo {
 /*   Funciones solo de Productos */
 
     async nuevoProducto(nuevoElemento){
-//        console.log(nuevoElemento)
-//        console.log(this.coleccion)
         try {
             const maximo = await this.coleccion.find().sort({id: -1}).limit(1);
             nuevoElemento.id = maximo[0].id+1
-            console.log(nuevoElemento)
             const nuevo  = new this.coleccion(nuevoElemento)
             const err    = await nuevo.save().catch(err => err);
-    //        console.log(err)
             if (!err.id){
                 return {menssage : "No se actualizó el Producto"};     
             }  else {
                 return err 
             }
-    
-
         } catch (error) {
             throw new Error(error)
         }
     }
 
     async actualizarProducto(id, nuevaData){
+        console.log(id)
+        console.log(nuevaData)
         try {
             const elementoActualizado = this.coleccion.findOneAndUpdate({id:id}, {$set: nuevaData},
                 {returnOriginal : false})
+            console.log(elementoActualizado)    
             return elementoActualizado
         } catch (error) {
             throw new Error(error)

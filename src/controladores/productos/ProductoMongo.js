@@ -36,6 +36,17 @@ class ProductoMongo {
     
     }
 
+    async actualizarProducto (req, res){
+        try {
+            const {id} = req.params
+            const respuesta = await Servicio.actualizarProducto(id, req.body)
+            res.json(respuesta) 
+        } catch (error) {
+            res.json(error)
+        }
+    
+    }
+
 
 
 }

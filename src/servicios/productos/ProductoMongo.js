@@ -17,13 +17,25 @@ class ServicioMongo {
      }
 
      async nuevoProducto(body){
-     const { id,nombre,descripcion,precio,foto } = body
+     const { nombre,precio,foto } = body
      body.timestamp  = Date.now()
-     if(!nombre || !precio || !foto) return res.json({menssage:'Debe completar todos los campos'})
+     if(!nombre || !precio || !foto) return {menssage:'Debe completar todos los campos'}
      const respuesta = await Persistencia.nuevoProducto(body)
-     console.log(respuesta)
      return respuesta
     }  
+
+    async actualizarProducto (id, datos){
+        try {
+            const {nombre,descripcion,precio,foto} = datos
+            if(!nombre || !precio || !foto) return {menssage:'Debe completar todos los campos'}
+            const respuesta = await Persistencia.actualizarProducto(id, {nombre,descripcion,precio,foto})
+            return respuesta 
+        } catch (error) {
+            console.log(error)
+            return error 
+        }
+
+    }
 }
 
 export {ServicioMongo}
