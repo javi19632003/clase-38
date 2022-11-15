@@ -3,8 +3,15 @@ import {productosApi} from '../controladores/index.js'
 
 const rutaProductos = Router()
 
-// Mostrar todos o un solo producto según su id
+
+
+// Mostrar todos los productos
+rutaProductos.get('/', productosApi.mostrarTodos)
+
+// Mostrar solo producto según su id
 rutaProductos.get('/:id?', productosApi.mostrarPorId)
+
+
 
 // Dar de alta un nuevo producto
 rutaProductos.post('/', async (req, res) => {

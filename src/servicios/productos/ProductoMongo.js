@@ -1,19 +1,22 @@
 import { productos }     from "../../persistencias/schemas/productos.js";
 import {ContenedorMongo} from '../../persistencias/index.js'
 
-const persistencia = new ContenedorMongo(productos);
+const Persistencia = new ContenedorMongo(productos);
 
 class ServicioMongo {
     constructor(){
     }
 
     async mostrarPorId (id){
-       const producto = await persistencia.mostrarPorId(id)
+      console.log("estoy en servicio")
+      console.log(id)
+       const producto = await Persistencia.mostrarPorId(id)
        return producto ? producto : {message: 'Producto no encontrado'}
     }
 
     async mostrarTodos(){
-        return await persistencia.mostrarTodos()
+      console.log("mostrar todos servico")
+        return await Persistencia.mostrarTodos()
      }
  
 

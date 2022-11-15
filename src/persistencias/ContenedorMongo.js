@@ -32,10 +32,9 @@ class ContenedorMongo {
         return docs 
      }
 
-
-    
-
+   
     async mostrarPorId(id){
+        console.log("persistencia por id");
         try {
             const resultado = await this.coleccion.findOne({id: id})
             return resultado
