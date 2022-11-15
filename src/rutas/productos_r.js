@@ -6,14 +6,14 @@ const rutaProductos = Router()
 
 
 // Mostrar todos los productos
-rutaProductos.get('/', productosApi.mostrarTodos)
+rutaProductos.get('/', productosApi.mostrarTodos);
 
 // Mostrar solo producto según su id
-rutaProductos.get('/:id?', productosApi.mostrarPorId)
-
-
+rutaProductos.get('/:id?', productosApi.mostrarPorId);
 
 // Dar de alta un nuevo producto
+rutaProductos.post('/', productosApi.nuevoProducto);
+/*
 rutaProductos.post('/', async (req, res) => {
     const { id,nombre,descripcion,precio,foto } = req.body
     const timestamp  = Date.now()
@@ -25,7 +25,7 @@ rutaProductos.post('/', async (req, res) => {
    
     
 })
-
+*/
 // Modificar un producto existente
 rutaProductos.put('/:id', async (req, res) => {
     const {id} = req.params

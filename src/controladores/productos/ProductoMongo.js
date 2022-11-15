@@ -17,13 +17,19 @@ class ProductoMongo {
     }
 
     async mostrarPorId (req, res){
-        console.log("estoy en controlador")
-        console.log(req.params.id)
         try {
-            console.log("voy a mostrar ....")
             const producto = await Servicio.mostrarPorId(req.params.id)
-            console.log(producto)
            return producto ? res.json(producto) : res.json({message: 'Producto no encontrado'})
+        } catch (error) {
+            res.json(error)
+        }
+    
+    }
+
+    async nuevoProducto (req, res){
+        try {
+            const producto = await Servicio.nuevoProducto(req.body)
+            res.json(producto) 
         } catch (error) {
             res.json(error)
         }
