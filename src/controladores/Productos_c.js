@@ -1,8 +1,8 @@
-import {ServicioMongo} from '../../servicios/productos/ProductoMongo.js'
+import {ServicioProducto} from '../servicios/Producto_s.js'
 
-const Servicio = new ServicioMongo();
+const Servicio = new ServicioProducto();
 
-class ProductoMongo {
+class ControladorProducto {
     constructor(){
 
     }
@@ -47,8 +47,20 @@ class ProductoMongo {
     
     }
 
+    async eliminarPorId (req, res){
+        try {
+            const {id} = req.params
+            if(id){
+                 const respuesta = await Servicio.eliminarPorId(id)
+                 res.json(respuesta)
+            }    
+        } catch (error) {
+            res.json(error)
+        }
+    
+    }
 
 
 }
 
-export {ProductoMongo}
+export {ControladorProducto}

@@ -1,6 +1,6 @@
 import dotenv                   from "dotenv";
 import mongoose                 from "mongoose";
-//import { productos }            from "./schemas/productos.js";
+
 dotenv.config();
 
 if (process.env.SELECTED_DB == "mongo"){
@@ -27,19 +27,18 @@ class ContenedorMongo {
 /*   Funciones Generales */
 
     async mostrarTodos() {
-        console.log("mostrando")
         const docs = await this.coleccion.find();
         return docs 
      }
 
    
     async mostrarPorId(id){
-        console.log("persistencia por id");
         try {
             const resultado = await this.coleccion.findOne({id: id})
             return resultado
         } catch (error) {
-            return error
+            console.log(error)
+            return {message: 'Error inesperado en mostrarPorId'}
         }
     }
 
@@ -51,7 +50,9 @@ class ContenedorMongo {
             return {message: 'Producto no encontrado'}
     
         } catch (error) {
-            throw new Error(error)
+            console.log(error)
+            return {message: 'Error inesperado en eliminarPorId'}
+
         }
     }
 

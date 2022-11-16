@@ -1,9 +1,14 @@
-import { Router }                   from "express"
-import { carritoApi, productosApi } from "../controladores/index.js"
+import { Router }             from "express"
+import { ControladorCarrito } from "../controladores/Carrito_c.js"
 
 const rutaCarrito = Router()
+const Carrito     = new ControladorCarrito();
 
 
+// Mostrar un carrito segùn su email 
+rutaCarrito.get('/:id?', Carrito.mostrarPorId);
+
+/*
 rutaCarrito.get('/:id?', async (req, res) => {
     try {
         const {id} = req.params
@@ -20,6 +25,7 @@ rutaCarrito.get('/:id?', async (req, res) => {
     }
 })
 
+*/
 
 rutaCarrito.post('/', async (req, res) => {
     try {

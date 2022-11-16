@@ -1,39 +1,24 @@
-import {Router}       from 'express'
-import {productosApi} from '../controladores/index.js'
+import {Router}              from 'express'
+import {ControladorProducto} from '../controladores/Productos_c.js'
 
 const rutaProductos = Router()
-
+const Producto      = new ControladorProducto();
 
 
 // Mostrar todos los productos
-rutaProductos.get('/', productosApi.mostrarTodos);
+rutaProductos.get('/', Producto.mostrarTodos);
 
 // Mostrar solo producto según su id
-rutaProductos.get('/:id?', productosApi.mostrarPorId);
+rutaProductos.get('/:id?', Producto.mostrarPorId);
 
 // Dar de alta un nuevo producto
-rutaProductos.post('/', productosApi.nuevoProducto);
+rutaProductos.post('/', Producto.nuevoProducto);
+
 // Modificar un producto existente
-rutaProductos.put('/:id', productosApi.actualizarProducto);
-
-
-/*
-rutaProductos.put('/:id', async (req, res) => {
-    const {id} = req.params
-    const {nombre,descripcion,precio,foto} = req.body
-    const respuesta = await productosApi.actualizarProducto(id, {nombre,descripcion,precio,foto})
-
-    res.json(respuesta)
-})
-*/
+rutaProductos.put('/:id', Producto.actualizarProducto);
 
 // Borrar Un Producto 
-rutaProductos.delete('/:id', async (req,res) => {
-   const {id} = req.params
-   if(id){
-        const respuesta = await productosApi.eliminarPorId(id)
-        res.json(respuesta)
-    }
-})
+rutaProductos.delete('/:id', Producto.eliminarPorId);
+
 
 export {rutaProductos}

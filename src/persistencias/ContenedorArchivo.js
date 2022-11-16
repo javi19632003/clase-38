@@ -3,6 +3,7 @@ import {archivo} from '../configuracion/index.js'
 
 class ContenedorArchivo {
     constructor(nombreArchivo){
+        console.log(nombreArchivo)
         this.nombreArchivo = `${archivo.directorio}/${nombreArchivo}.json`
     }
 

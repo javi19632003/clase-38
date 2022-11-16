@@ -1,9 +1,15 @@
-import { productos }     from "../../persistencias/schemas/productos.js";
-import {ContenedorMongo} from '../../persistencias/index.js'
+import dotenv            from "dotenv";
+import { productos }     from "../persistencias/schemas/productos.js";
+import {ContenedorMongo, ContenedorArchivo} from '../persistencias/index.js'
 
-const Persistencia = new ContenedorMongo(productos);
 
-class ServicioMongo {
+dotenv.config();
+
+const Persistencia =  process.env.SELECTED_DB == "mongo" ?
+new ContenedorMongo(productos) : new ContenedorArchivo('productos');
+
+
+class ServicioProducto {
     constructor(){
     }
 
@@ -36,6 +42,17 @@ class ServicioMongo {
         }
 
     }
+
+
+    async eliminarPorId(id){
+        try {
+            const elementoeliminado = await Persistencia.eliminarPorId(id)
+            return elementoeliminado
+        } catch (error) {
+            throw new Error(error)
+        }
+    }
+
 }
 
-export {ServicioMongo}
+export {ServicioProducto}
