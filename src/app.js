@@ -1,17 +1,17 @@
-import dotenv             from "dotenv";
-import express            from "express";
-import session            from "express-session";
-import passport           from "passport";
-import bcrypt             from "bcrypt";
-import { Strategy }       from "passport-local";
-import {usuarioApi}       from './controladores/index.js'
+import dotenv               from "dotenv";
+import express              from "express";
+import session              from "express-session";
+import passport             from "passport";
+//import bcrypt               from "bcrypt";
+//import { Strategy }         from "passport-local";
+import {ControladorUsuario} from './controladores/Usuarios_c.js'
 import {rutaCarrito, rutaProductos, rutaUsuarios } from './rutas/index.js'
 
 dotenv.config();
-
+const Usuario       = new ControladorUsuario();
 const app           = express();
 const PORT          = process.env.PORT || 8080
-const LocalStrategy = Strategy;
+//const LocalStrategy = Strategy;
 const PRIVATE_KEY   = "mi_token_secreto";
 
 /*============================[Middlewares]============================*/
@@ -28,36 +28,8 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-  
-  passport.use(
-    new LocalStrategy(
-      {usernameField: "email",
-      passwordField: "pass"},
-      async (email, pass, done) => {
-      
-      const usuario =  await usuarioApi.veoUsuario(email);
-      if(!usuario) return done(null, false);
 
-     console.log(usuario) 
-    /*
-     const myHash = await bcrypt.hash(pass, 10).then(function(hashed){
-      return hashed
-  });
-  console.log(hash);
-  */
-      console.log(pass)
-      console.log(usuario.pass)
-      const comparo = await bcrypt.compare(pass, usuario.pass).then(function(comparado){
-          return comparado
-      });
-      
-      console.log(comparo);
-      if(!comparo)return done(null, false);
-     done(null, usuario); 
-    })
-  );
-
-
+/*
 //serializar
 passport.serializeUser(function (user, done) {
   done(null, user.id);
@@ -65,14 +37,16 @@ passport.serializeUser(function (user, done) {
 
 //deserializar
 passport.deserializeUser(function (id, done) {
-  done(null, { id: 1, nombre: "Diego" });
+  done(null, user );
 });
-
-
+*/
 /*============================[Rutas]==================================*/
 app.use('/api/productos', rutaProductos)
-//app.use('/api/carrito', rutaCarrito)
-//app.use('/api/usuarios', rutaUsuarios)
+app.use('/api/carrito', rutaCarrito)
+app.use('/api/usuarios', rutaUsuarios)
+
+
+
 app.get("/protected", auth, (req, res) => {
   res.send("Estoy en /protected");
 });

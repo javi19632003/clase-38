@@ -42,7 +42,6 @@ class ContenedorMongo {
         }
     }
 
-
     async eliminarPorId(id){
         try {
             const elementoeliminado = await this.coleccion.deleteOne({id: id})

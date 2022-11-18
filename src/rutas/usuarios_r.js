@@ -1,16 +1,22 @@
 import passport                 from "passport";
-import jwt                      from "jsonwebtoken";
+//import jwt                      from "jsonwebtoken";
 import dotenv                   from "dotenv";
 import {Router}                 from 'express'
-import {usuarioApi}             from '../controladores/index.js'
+import {ControladorUsuario}     from '../controladores/index.js'
 
 dotenv.config();
 const rutaUsuarios  = Router()
+const Usuario       = new ControladorUsuario();
 const PRIVATE_KEY   = process.env.PRIVATE_KEY || "mi_token_secreto";
 
 /*----------- Session -----------*/  
 
 
+
+// Login del usuario 
+rutaUsuarios.post('/login',  passport.authenticate("local"), Usuario.veoUsuario);
+
+/*
   rutaUsuarios.post("/login", passport.authenticate("local"), (req, res) => {
     console.log(req.user);
     const { email, nombre } = req.user;
@@ -37,6 +43,6 @@ const PRIVATE_KEY   = process.env.PRIVATE_KEY || "mi_token_secreto";
 
   });
 
-
+*/
 
 export {rutaUsuarios}

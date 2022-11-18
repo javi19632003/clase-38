@@ -1,7 +1,6 @@
-import dotenv            from "dotenv";
-import { productos }     from "../persistencias/schemas/productos.js";
+import dotenv                               from "dotenv";
+import { productos }                        from "../persistencias/schemas/productos.js";
 import {ContenedorMongo, ContenedorArchivo} from '../persistencias/index.js'
-
 
 dotenv.config();
 

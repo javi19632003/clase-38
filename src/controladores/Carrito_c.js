@@ -1,7 +1,4 @@
-//import {ContenedorMongo} from '../persistencias/index.js'
-//import { carritos }      from "../persistencias/schemas/carritos.js";
-import {ServicioCarrito} from '../servicios/Carrito_s.js'
-
+import {ServicioCarrito} from '../servicios/index.js'
 const Servicio = new ServicioCarrito();
 
 class ControladorCarrito {
@@ -17,7 +14,34 @@ class ControladorCarrito {
     
     }
 
+    async mostrarTodos (req, res){
+        try {
+            const productos = await Servicio.mostrarTodos()
+            res.json(productos) 
+        } catch (error) {
+            res.json(error)
+        }
+    }
 
+    async actualizarCarrito (req, res){
+        try {
+            const { id, productos } = req.body
+            const carrito = await Servicio.actualizarCarrito({id, productos})
+            res.json(carrito)
+        } catch (error) {
+            res.json(error)
+        }
+    }
+
+    async eliminarPorId (req, res){
+        try {
+            const {id} = req.params
+            const respuesta = await Servicio.eliminarPorId(id)   
+            res.json(respuesta)
+        } catch (error) {
+            res.json(error)
+        }
+    }
 
 
 }

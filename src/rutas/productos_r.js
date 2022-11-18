@@ -1,5 +1,5 @@
 import {Router}              from 'express'
-import {ControladorProducto} from '../controladores/Productos_c.js'
+import {ControladorProducto} from '../controladores/index.js'
 
 const rutaProductos = Router()
 const Producto      = new ControladorProducto();
