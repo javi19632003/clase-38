@@ -16,6 +16,11 @@ const PRIVATE_KEY   = process.env.PRIVATE_KEY || "mi_token_secreto";
 // Login del usuario 
 rutaUsuarios.post('/login',  passport.authenticate("local"), Usuario.veoUsuario);
 
+// Registro de un nuevo usuario 
+rutaUsuarios.post('/registro',  Usuario.nuevoUsuario);
+
+// Deslogueo del usuario
+rutaUsuarios.get('/logout',  Usuario.logout);
 /*
   rutaUsuarios.post("/login", passport.authenticate("local"), (req, res) => {
     console.log(req.user);

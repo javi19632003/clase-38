@@ -63,6 +63,7 @@ const server = app.listen(PORT, () => {
 
 function auth(req, res, next) {
   const authHeader = req.headers.authorization;
+  console.log("authHeader");
   console.log(authHeader);
   if (!authHeader) {
     return res.status(401).json({

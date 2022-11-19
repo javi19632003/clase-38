@@ -14,9 +14,15 @@ class ServicioUsuario {
 
     async veoUsuario (email){
         const usuario = await Persistencia.veoUsuario(email)
-        return usuario ? usuario : {message: 'no existe'}
+        return usuario 
+        //? usuario : {message: 'no existe'}
      }
 
+     async nuevoUsuario (nuevo){
+        const usuario = await Persistencia.nuevoUsuario(nuevo)
+        return usuario 
+        //? usuario : {message: 'no existe'}
+     }
 }
 
 export {ServicioUsuario}

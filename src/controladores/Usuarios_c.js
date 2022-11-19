@@ -19,14 +19,15 @@ passport.use(
       const usuario =  await Servicio.veoUsuario(email);
       if(!usuario) return done(null, false);
 
-      console.log(usuario) 
-      console.log(pass)
-      console.log(usuario.pass)
+      if (!isNaN(email)) {
+        email = email.toString()
+      }
+      if (!isNaN(pass)) {
+        pass = pass.toString()
+      }
       const comparo = await bcrypt.compare(pass, usuario.pass).then(function(comparado){
           return comparado
       });
-      
-      console.log(comparo);
       if(!comparo)return done(null, false);
      done(null, usuario); 
     })
@@ -50,9 +51,11 @@ class ControladorUsuario {
     }
  
     async veoUsuario (req, res){
-        console.log(req.user);
         const { email, nombre } = req.user;
-        
+        if (!isNaN(email)) {
+          email = email.toString()
+        }
+
         const userForToken = {
           email,
           nombre,
@@ -63,6 +66,28 @@ class ControladorUsuario {
           token,
         });
     }
+
+    async nuevoUsuario (req, res){
+     
+      const { email, nombre, direccion, telefono, pass, edad, foto} = req.body
+      if(!email || !nombre || !direccion || !telefono || !pass || !edad || !foto)
+       return res.json({menssage:'Debe completar todos los campos'})
+
+      const respuesta = await Servicio.nuevoUsuario(req.body)
+      
+      res.json(respuesta)
+  }
+
+  //Ruta para cerrar la sesión
+
+  async logout (req, res){
+    req.logout();
+    //res.redirect('/login');
+    res.json({menssage:'Usuario deslogueado'})
+  
+  }
+
+
 
 }
 
