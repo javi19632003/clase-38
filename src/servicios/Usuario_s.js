@@ -1,10 +1,9 @@
-import dotenv                               from "dotenv";
+import config                               from "../configuracion/config.js";
 import { usuarios }                         from "../persistencias/schemas/usuarios.js";
 import {ContenedorMongo, ContenedorArchivo} from '../persistencias/index.js'
 
-dotenv.config();
 
-const Persistencia =  process.env.SELECTED_DB == "mongo" ?
+const Persistencia =  config.SELECTED_DB == "mongo" ?
 new ContenedorMongo(usuarios) : new ContenedorArchivo('usuarios');
 
 

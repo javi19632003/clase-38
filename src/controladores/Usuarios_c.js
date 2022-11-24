@@ -3,11 +3,11 @@ import jwt                  from "jsonwebtoken";
 import {ServicioUsuario}    from '../servicios/index.js'
 import { Strategy }         from "passport-local";
 import bcrypt               from "bcrypt";
+import config               from "../configuracion/config.js";
 
 
 const Servicio      = new ServicioUsuario();
 const LocalStrategy = Strategy;
-const PRIVATE_KEY   = "mi_token_secreto";
 
 
 passport.use(
@@ -45,7 +45,7 @@ passport.serializeUser(function (user, done) {
     done(null, user );
   });
   
-
+ 
 class ControladorUsuario {
     constructor(){
     }
@@ -60,7 +60,7 @@ class ControladorUsuario {
           email,
           nombre,
         };
-        const token = jwt.sign(userForToken, PRIVATE_KEY);
+        const token = jwt.sign(userForToken, config.PRIVATE_KEY);
         
         res.json({
           token,

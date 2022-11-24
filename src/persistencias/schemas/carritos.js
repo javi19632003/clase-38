@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-//mongoose.pluralize(null);
+
 const carritoCollection = "carritos";
 
 const carritoSchema = new mongoose.Schema({

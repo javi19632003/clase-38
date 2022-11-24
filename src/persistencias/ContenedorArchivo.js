@@ -1,10 +1,11 @@
+import config    from "../configuracion/config.js"
 import * as fs   from 'fs/promises'
-import {archivo} from '../configuracion/index.js'
+//import {archivo} from '../configuracion/index.js'
 
 class ContenedorArchivo {
     constructor(nombreArchivo){
         console.log(nombreArchivo)
-        this.nombreArchivo = `${archivo.directorio}/${nombreArchivo}.json`
+        this.nombreArchivo = `${config.MONGO_DB_URI}/${nombreArchivo}.json`
     }
 
     async mostrarTodos() {

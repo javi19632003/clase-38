@@ -1,5 +1,5 @@
 import passport                 from "passport";
-//import jwt                      from "jsonwebtoken";
+import jwt                      from "jsonwebtoken";
 import dotenv                   from "dotenv";
 import {Router}                 from 'express'
 import {ControladorUsuario}     from '../controladores/index.js'
@@ -9,10 +9,6 @@ const rutaUsuarios  = Router()
 const Usuario       = new ControladorUsuario();
 const PRIVATE_KEY   = process.env.PRIVATE_KEY || "mi_token_secreto";
 
-/*----------- Session -----------*/  
-
-
-
 // Login del usuario 
 rutaUsuarios.post('/login',  passport.authenticate("local"), Usuario.veoUsuario);
 
@@ -20,34 +16,38 @@ rutaUsuarios.post('/login',  passport.authenticate("local"), Usuario.veoUsuario)
 rutaUsuarios.post('/registro',  Usuario.nuevoUsuario);
 
 // Deslogueo del usuario
-rutaUsuarios.get('/logout',  Usuario.logout);
-/*
-  rutaUsuarios.post("/login", passport.authenticate("local"), (req, res) => {
-    console.log(req.user);
-    const { email, nombre } = req.user;
-    
-    const userForToken = {
-      email,
-      nombre,
-    };
-    const token = jwt.sign(userForToken, PRIVATE_KEY);
-    
-    res.json({
-      token,
-    });
+rutaUsuarios.get('/logout',   Usuario.logout);
 
-  });
-  
-  rutaUsuarios.post("/registro", async (req, res) => {
-    console.log(req.body)
 
-    const respuesta = await usuarioApi.nuevoUsuario(req.body)
-    
-    res.json(respuesta)
-   
+rutaUsuarios.post("/pro", auth, (req, res) => {
+  res.send("Estoy en /protected");
+});
 
-  });
 
-*/
+function auth(req, res, next) {
+  console.log(req.isAuthenticated())
+   const authHeader = req.headers.authorization;
+   console.log("authHeader");
+   console.log(authHeader);
+   if (!authHeader) {
+     return res.status(401).json({
+       error: "not authenticated",
+     });
+   }
+ 
+   const token = authHeader;
+   console.log(token);
+   jwt.verify(token, PRIVATE_KEY, (err, decoded) => {
+    console.log(decoded)
+     if (err) {
+       return res.status(401).json({
+         error: "not authorized",
+       });
+     }
+     req.user = decoded.data;
+     console.log(req.user)
+     next();
+   });
+ }
 
 export {rutaUsuarios}

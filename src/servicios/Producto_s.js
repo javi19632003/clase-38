@@ -1,10 +1,10 @@
-import dotenv                               from "dotenv";
+import config                               from "../configuracion/config.js";
 import { productos }                        from "../persistencias/schemas/productos.js";
 import {ContenedorMongo, ContenedorArchivo} from '../persistencias/index.js'
 
-dotenv.config();
 
-const Persistencia =  process.env.SELECTED_DB == "mongo" ?
+
+const Persistencia =  config.SELECTED_DB == "mongo" ?
 new ContenedorMongo(productos) : new ContenedorArchivo('productos');
 
 
@@ -22,9 +22,6 @@ class ServicioProducto {
      }
 
      async nuevoProducto(body){
-     const { nombre,precio,foto } = body
-     body.timestamp  = Date.now()
-     if(!nombre || !precio || !foto) return {menssage:'Debe completar todos los campos'}
      const respuesta = await Persistencia.nuevoProducto(body)
      return respuesta
     }  
@@ -32,7 +29,6 @@ class ServicioProducto {
     async actualizarProducto (id, datos){
         try {
             const {nombre,descripcion,precio,foto} = datos
-            if(!nombre || !precio || !foto) return {menssage:'Debe completar todos los campos'}
             const respuesta = await Persistencia.actualizarProducto(id, {nombre,descripcion,precio,foto})
             return respuesta 
         } catch (error) {
