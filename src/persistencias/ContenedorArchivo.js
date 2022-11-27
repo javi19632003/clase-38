@@ -6,6 +6,7 @@ class ContenedorArchivo {
     constructor(nombreArchivo){
         console.log(nombreArchivo)
         this.nombreArchivo = `${config.MONGO_DB_URI}/${nombreArchivo}.json`
+        console.log(this.nombreArchivo)
     }
 
     async mostrarTodos() {

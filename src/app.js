@@ -28,15 +28,18 @@ if(config.NODE_ENV == 'produccion') app.use(cors());
 
 
 /*============================[Rutas]==================================*/
+
+app.post("/", auth, (req, res) => {
+  res.redirect('/api/productos/productos');
+});
+
 app.use('/api/productos', rutaProductos)
 app.use('/api/carrito', rutaCarrito)
 app.use('/api/usuarios', rutaUsuarios)
 
 
 
-app.get("/protected", auth, (req, res) => {
-  res.send("Estoy en /protected");
-});
+
 /*=====================================================================*/
 
 const server = app.listen(config.PORT, () => {
