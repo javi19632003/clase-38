@@ -28,9 +28,13 @@ if(config.NODE_ENV == 'produccion') app.use(cors());
 
 
 /*============================[Rutas]==================================*/
-
+/*
 app.post("/", auth, (req, res) => {
   res.redirect('/api/productos/productos');
+});
+*/
+app.get("/", (req, res) => {
+  res.redirect('/api/productos');
 });
 
 app.use('/api/productos', rutaProductos)

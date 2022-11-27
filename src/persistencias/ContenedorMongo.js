@@ -136,6 +136,4 @@ class ContenedorMongo {
 
 }
 
-
-
 export {ContenedorMongo}

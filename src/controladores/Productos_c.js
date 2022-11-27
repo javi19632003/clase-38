@@ -27,9 +27,11 @@ class ControladorProducto {
     }
 
     async nuevoProducto (req, res){
+       
         try {
-            const { nombre,precio,foto } = body
-            body.timestamp  = Date.now()
+            const { nombre,precio,foto } = req.body
+            req.body.timestamp  = Date.now()
+            console.log('llegue a nuevo producto de controlador')
             if(!nombre || !precio || !foto) res.json({menssage:'Debe completar todos los campos'})
             const producto = await Servicio.nuevoProducto(req.body)
             res.json(producto) 
@@ -42,7 +44,7 @@ class ControladorProducto {
     async actualizarProducto (req, res){
         try {
             const {id} = req.params
-            const {nombre,precio,foto} = datos
+            const {nombre,precio,foto} = req.body
             if(!nombre || !precio || !foto) res.json( {menssage:'Debe completar todos los campos'})
             const respuesta = await Servicio.actualizarProducto(id, req.body)
             res.json(respuesta) 

@@ -22,6 +22,7 @@ class ServicioProducto {
      }
 
      async nuevoProducto(body){
+        console.log('llegue a nuevo producto de servicio')
      const respuesta = await Persistencia.nuevoProducto(body)
      return respuesta
     }  

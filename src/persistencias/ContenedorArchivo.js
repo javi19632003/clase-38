@@ -44,10 +44,7 @@ class ContenedorArchivo {
         try {
             const elementos = await this.mostrarTodos()
             const resultado = elementos.find(elemento => elemento.id === parseInt(id))
-
             return resultado
-
-
         } catch (error) {
             throw new Error(error)
         }
@@ -64,6 +61,27 @@ class ContenedorArchivo {
 
             await fs.writeFile(this.nombreArchivo, JSON.stringify(elementos))
             return elementoActualizado
+        } catch (error) {
+            throw new Error(error)
+        }
+    }
+
+    async actualizarCarrito(nuevoElemento){
+        const {id } = nuevoElemento
+        let respuesta = []
+        try {
+            const elementos = await this.mostrarTodos()
+            const elementoIndex = elementos.findIndex(elemento => elemento.id === id)
+            if(elementoIndex === -1) {
+                elementos.push(nuevoElemento)
+                respuesta = nuevoElemento    
+            } else {
+                elementos.splice(elementoIndex, 1)
+                elementos.push(nuevoElemento)
+                respuesta = nuevoElemento    
+            }  
+            await fs.writeFile(this.nombreArchivo, JSON.stringify(elementos))  
+            return respuesta
         } catch (error) {
             throw new Error(error)
         }
