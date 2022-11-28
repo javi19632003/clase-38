@@ -28,6 +28,8 @@ app.use(passport.session());
 
 if(config.NODE_ENV == 'produccion') app.use(cors());
 
+app.set("views", "./src/views");
+app.set("view engine", "pug");
 
 /*============================[Rutas]==================================*/
 
@@ -35,6 +37,15 @@ app.get("/", (req, res) => {
   res.redirect('/api/productos');
 });
 
+app.get("/config", function (req, res) {
+  res.render("config.pug", {
+    titleTable: "Configuracion del Servidor",
+    Modo: config.NODE_ENV,
+    Puerto: config.PORT,
+    Persis: config.SELECTED_DB,
+    Correo: config.MAIL_USER,
+  });
+});
 app.use('/api/productos', rutaProductos)
 app.use('/api/carrito', rutaCarrito)
 app.use('/api/usuarios', rutaUsuarios)
