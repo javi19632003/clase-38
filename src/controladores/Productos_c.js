@@ -26,11 +26,24 @@ class ControladorProducto {
     
     }
 
+    async mostrarPorCategoria (req, res){
+        try {
+            const producto = await Servicio.mostrarPorCategoria(req.params.categoria)
+            if (producto.length > 0) {
+                res.json(producto)
+            } else {
+                res.json({message: 'No hay Productos para esa Categoria'})
+            }    
+        } catch (error) {
+            res.json(error)
+        }
+    
+    }
+
     async nuevoProducto (req, res){
        
         try {
             const { nombre,precio,foto } = req.body
-            req.body.timestamp  = Date.now()
             console.log('llegue a nuevo producto de controlador')
             if(!nombre || !precio || !foto) res.json({menssage:'Debe completar todos los campos'})
             const producto = await Servicio.nuevoProducto(req.body)

@@ -12,9 +12,9 @@ class ServicioUsuario {
     }
 
     async veoUsuario (email){
+        
         const usuario = await Persistencia.veoUsuario(email)
         return usuario 
-        //? usuario : {message: 'no existe'}
      }
 
      async nuevoUsuario (nuevo){
@@ -27,11 +27,9 @@ class ServicioUsuario {
                html: `<h3> HOLA!!!!  </h3><br> 
                       <h5> ${usuario.nombre} ya eres parte de nuestra comunidad </h5 `
          }
-            const mando = await transporter.sendMail(mimail);
-            console.log(mando.messageId)
+            const mando = transporter.sendMail(mimail);
         }
         return usuario 
-        //? usuario : {message: 'no existe'}
      }
 }
 

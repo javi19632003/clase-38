@@ -3,6 +3,7 @@ import express              from "express";
 import session              from "express-session";
 import passport             from "passport";
 import cors                 from "cors";
+
 import {ControladorUsuario} from './controladores/Usuarios_c.js'
 import {rutaCarrito, rutaProductos, rutaUsuarios } from './rutas/index.js'
 
@@ -18,6 +19,7 @@ app.use(
     secret: config.PRIVATE_KEY,
     resave: false,
     saveUninitialized: false,
+    cookie: { maxAge: 60000 },
   })
 );
 
@@ -28,11 +30,7 @@ if(config.NODE_ENV == 'produccion') app.use(cors());
 
 
 /*============================[Rutas]==================================*/
-/*
-app.post("/", auth, (req, res) => {
-  res.redirect('/api/productos/productos');
-});
-*/
+
 app.get("/", (req, res) => {
   res.redirect('/api/productos');
 });
@@ -52,28 +50,3 @@ const server = app.listen(config.PORT, () => {
   server.on("error", (err) => console.error(err));
   
 
-/*=====================================================================*/
-
-
-function auth(req, res, next) {
-  const authHeader = req.headers.authorization;
-  console.log("authHeader");
-  console.log(authHeader);
-  if (!authHeader) {
-    return res.status(401).json({
-      error: "not authenticated",
-    });
-  }
-
-  const token = authHeader;
-  console.log(token);
-  jwt.verify(token, PRIVATE_KEY, (err, decoded) => {
-    if (err) {
-      return res.status(401).json({
-        error: "not authorized",
-      });
-    }
-    req.user = decoded.data;
-    next();
-  });
-}

@@ -68,13 +68,12 @@ class ControladorUsuario {
     }
 
     async nuevoUsuario (req, res){
-     
       const { email, nombre, direccion, telefono, pass, edad, foto} = req.body
+
       if(!email || !nombre || !direccion || !telefono || !pass || !edad || !foto)
        return res.json({menssage:'Debe completar todos los campos'})
 
       const respuesta = await Servicio.nuevoUsuario(req.body)
-      
       res.json(respuesta)
   }
 
@@ -83,7 +82,7 @@ class ControladorUsuario {
   async logout (req, res){
     req.logout();
     //res.redirect('/login');
-    res.json({menssage:'Usuario deslogueado'})
+    //res.json({menssage:'Usuario deslogueado'})
   
   }
 

@@ -17,6 +17,11 @@ class ServicioProducto {
        return producto ? producto : {message: 'Producto no encontrado'}
     }
 
+    async mostrarPorCategoria (categoria){
+        const producto = await Persistencia.mostrarPorCategoria(categoria)
+        return producto ? producto : {message: 'No hay Productos con esa Categoria'}
+     }    
+
     async mostrarTodos(){
         return await Persistencia.mostrarTodos()
      }

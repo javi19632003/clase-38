@@ -11,6 +11,9 @@ rutaProductos.get('/', Producto.mostrarTodos);
 // Mostrar solo producto según su id
 rutaProductos.get('/:id?', Producto.mostrarPorId);
 
+// Mostrar por categoria
+rutaProductos.get('/cate/:categoria?', Producto.mostrarPorCategoria);
+
 // Dar de alta un nuevo producto
 rutaProductos.post('/', Producto.nuevoProducto);
 

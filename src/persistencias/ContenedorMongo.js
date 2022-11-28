@@ -1,9 +1,8 @@
-import dotenv                   from "dotenv";
-import mongoose                 from "mongoose";
+import config    from "../configuracion/config.js";
+import mongoose  from "mongoose";
 
-dotenv.config();
 
-if (process.env.SELECTED_DB == "mongo"){
+if (config.SELECTED_DB == "mongo"){
     try {
         mongoose.connect( 
             process.env.MONGO_DB_URI,
@@ -39,6 +38,16 @@ class ContenedorMongo {
         } catch (error) {
             console.log(error)
             return {message: 'Error inesperado en mostrarPorId'}
+        }
+    }
+
+    async mostrarPorCategoria(categoria){
+        try {
+            const resultado = await this.coleccion.find({categoria: categoria})
+            return resultado
+        } catch (error) {
+            console.log(error)
+            return {message: 'Error inesperado en mostrarPorCategoria'}
         }
     }
 

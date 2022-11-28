@@ -4,9 +4,7 @@ import * as fs   from 'fs/promises'
 
 class ContenedorArchivo {
     constructor(nombreArchivo){
-        console.log(nombreArchivo)
         this.nombreArchivo = `${config.MONGO_DB_URI}/${nombreArchivo}.json`
-        console.log(this.nombreArchivo)
     }
 
     async mostrarTodos() {
@@ -43,13 +41,22 @@ class ContenedorArchivo {
     async mostrarPorId(id){
         try {
             const elementos = await this.mostrarTodos()
-            const resultado = elementos.find(elemento => elemento.id === parseInt(id))
+            const resultado = elementos.find(elemento => elemento.id == id)
             return resultado
         } catch (error) {
             throw new Error(error)
         }
     }
-
+ 
+    async mostrarPorCategoria(categoria){
+        try {
+            const elementos = await this.mostrarTodos()
+            const resultado = elementos.filter(elemento => elemento.categoria == categoria)
+            return resultado
+        } catch (error) {
+            throw new Error(error)
+        }
+    }
     async actualizarProducto(id, nuevaData){
         try {
             const elementos = await this.mostrarTodos()
@@ -90,7 +97,7 @@ class ContenedorArchivo {
     async eliminarPorId(id){
         try {
             const elementos = await this.mostrarTodos()
-            const elementoIndex = elementos.findIndex(elemento => elemento.id === parseInt(id))
+            const elementoIndex = elementos.findIndex(elemento => elemento.id == id)
 
             if(elementoIndex === -1) return {message: 'elemento no encontrado'}
 
@@ -114,6 +121,35 @@ class ContenedorArchivo {
             throw new Error(error)
         }
     }
+
+    async nuevoUsuario(nuevoElemento){
+        const { email } = nuevoElemento
+        try {
+            const elementos = await this.mostrarTodos()
+            const elementoIndex = elementos.findIndex(elemento => elemento.email === email)
+            if(elementoIndex === -1) {
+                elementos.push(nuevoElemento)
+                await fs.writeFile(this.nombreArchivo, JSON.stringify(elementos))  
+                return nuevoElemento
+            } else {
+                return {message: 'No se dió de alta el Usuario'}
+            }  
+        } catch (error) {
+            throw new Error(error)
+        }
+    }
+
+    async veoUsuario(email){
+        try {
+            const elementos = await this.mostrarTodos()
+            const resultado = elementos.find(elemento => elemento.email == email)
+            return resultado
+        } catch (error) {
+            throw new Error(error)
+        }
+    }
+
+
 }
 
 export {ContenedorArchivo}

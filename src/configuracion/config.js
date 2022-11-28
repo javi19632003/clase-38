@@ -9,5 +9,7 @@ export default {
     PORT:           process.env.PORT     || 8080,
     MONGO_DB_URI:   process.env.MONGO_DB_URI || "./src/modelos/datos",
     SELECTED_DB:    process.env.SELECTED_DB || 'file',
-    PRIVATE_KEY:    process.env.PRIVATE_KEY || "mi clave secreta"
+    PRIVATE_KEY:    process.env.PRIVATE_KEY || "mi clave secreta",
+    MAIL_USER:      process.env.MAIL_USER || 'camilla.gleichner@ethereal.email',
+    MAIL_PASS:      process.env.MAIL_PASS || 'G5uW8tEjyyK6ZEpKY8'
 }
