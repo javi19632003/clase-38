@@ -2,8 +2,7 @@
 .env
 # dependencies
 /node_modules
-/pruebas.js
-/credentials.csv
+/utils
 
 # testing
 /coverage
