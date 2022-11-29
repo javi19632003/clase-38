@@ -5,9 +5,9 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "set NODE_ENV=produccion&& node ./src/app.js",
+    "start": "set NODE_ENV=production&& node ./src/app.js",
     "dev": "set NODE_ENV=development&& nodemon src/app.js",
-    "prod": "set NODE_ENV=produccion&& nodemon src/app.js",
+    "prod": "set NODE_ENV=production&& nodemon src/app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

@@ -18,7 +18,7 @@ app.use(
     secret: config.PRIVATE_KEY,
     resave: false,
     saveUninitialized: false,
-    cookie: { maxAge: 60000 },
+    expired: 10000,
   })
 );
 
