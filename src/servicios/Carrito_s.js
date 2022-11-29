@@ -51,4 +51,4 @@ class ServicioCarrito {
 
 }
 
-export {ServicioCarrito}
+export { ServicioCarrito }
