@@ -1,4 +1,4 @@
-import {ServicioCarrito} from '../servicios/index.js'
+import { ServicioCarrito } from '../servicios/index.js'
 const Servicio = new ServicioCarrito();
 
 class ControladorCarrito {
@@ -46,4 +46,4 @@ class ControladorCarrito {
 
 }
 
-export {ControladorCarrito}
+export { ControladorCarrito }

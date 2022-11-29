@@ -1,6 +1,6 @@
-import config                               from "../configuracion/config.js";
-import { productos }                        from "../persistencias/schemas/productos.js";
-import {ContenedorMongo, ContenedorArchivo} from '../persistencias/index.js'
+import config                                 from "../configuracion/config.js";
+import { productos }                          from "../persistencias/schemas/productos.js";
+import { ContenedorMongo, ContenedorArchivo } from '../persistencias/index.js'
 
 
 
@@ -56,4 +56,4 @@ class ServicioProducto {
 
 }
 
-export {ServicioProducto}
+export { ServicioProducto }

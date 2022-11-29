@@ -145,4 +145,4 @@ class ContenedorMongo {
 
 }
 
-export {ContenedorMongo}
+export { ContenedorMongo }

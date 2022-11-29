@@ -1,9 +1,9 @@
-import passport             from "passport";
-import jwt                  from "jsonwebtoken";
-import {ServicioUsuario}    from '../servicios/index.js'
-import { Strategy }         from "passport-local";
-import bcrypt               from "bcrypt";
-import config               from "../configuracion/config.js";
+import passport               from "passport";
+import jwt                    from "jsonwebtoken";
+import { ServicioUsuario }    from '../servicios/index.js'
+import { Strategy }           from "passport-local";
+import bcrypt                 from "bcrypt";
+import config                 from "../configuracion/config.js";
 
 
 const Servicio      = new ServicioUsuario();
@@ -90,4 +90,4 @@ class ControladorUsuario {
 
 }
 
-export {ControladorUsuario}
+export { ControladorUsuario }

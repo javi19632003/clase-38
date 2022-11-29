@@ -1,7 +1,7 @@
-import config                               from "../configuracion/config.js";
-import { usuarios }                         from "../persistencias/schemas/usuarios.js";
-import {ContenedorMongo, ContenedorArchivo} from '../persistencias/index.js'
-import { transporter }                      from '../configuracion/configmail.js';
+import config                                 from "../configuracion/config.js";
+import { usuarios }                           from "../persistencias/schemas/usuarios.js";
+import { ContenedorMongo, ContenedorArchivo } from '../persistencias/index.js'
+import { transporter }                        from '../configuracion/configmail.js';
 
 const Persistencia =  config.SELECTED_DB == "mongo" ?
 new ContenedorMongo(usuarios) : new ContenedorArchivo('usuarios');
@@ -33,4 +33,4 @@ class ServicioUsuario {
      }
 }
 
-export {ServicioUsuario}
+export { ServicioUsuario }

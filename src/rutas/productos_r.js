@@ -1,5 +1,5 @@
-import {Router}              from 'express'
-import {ControladorProducto} from '../controladores/index.js'
+import { Router }              from 'express'
+import { ControladorProducto } from '../controladores/index.js'
 
 const rutaProductos = Router()
 const Producto      = new ControladorProducto();
@@ -24,4 +24,4 @@ rutaProductos.put('/:id', Producto.actualizarProducto);
 rutaProductos.delete('/:id', Producto.eliminarPorId);
 
 
-export {rutaProductos}
+export { rutaProductos }

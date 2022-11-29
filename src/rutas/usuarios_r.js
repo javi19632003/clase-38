@@ -1,8 +1,8 @@
-import config                   from "../configuracion/config.js";
-import passport                 from "passport";
-import jwt                      from "jsonwebtoken";
-import {Router}                 from 'express'
-import {ControladorUsuario}     from '../controladores/index.js'
+import config                     from "../configuracion/config.js";
+import passport                   from "passport";
+import jwt                        from "jsonwebtoken";
+import { Router }                 from 'express'
+import { ControladorUsuario }     from '../controladores/index.js'
 
 const rutaUsuarios  = Router()
 const Usuario       = new ControladorUsuario();
@@ -49,4 +49,4 @@ function auth(req, res, next) {
    });
  }
 
-export {rutaUsuarios}
+export { rutaUsuarios }

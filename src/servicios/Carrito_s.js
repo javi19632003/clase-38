@@ -1,6 +1,6 @@
-import config                               from "../configuracion/config.js";
-import { carritos }                         from "../persistencias/schemas/carritos.js";
-import {ContenedorMongo, ContenedorArchivo} from '../persistencias/index.js'
+import config                                 from "../configuracion/config.js";
+import { carritos }                           from "../persistencias/schemas/carritos.js";
+import { ContenedorMongo, ContenedorArchivo } from '../persistencias/index.js'
 
 
 const Persistencia =  config.SELECTED_DB == "mongo" ?

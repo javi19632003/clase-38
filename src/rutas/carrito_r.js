@@ -30,4 +30,4 @@ rutaCarrito.delete('/:id?', async (req, res) => {
     }
 })
 */
-export {rutaCarrito}
+export { rutaCarrito }

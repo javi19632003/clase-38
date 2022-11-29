@@ -1,11 +1,10 @@
-import config               from "./configuracion/config.js";
-import express              from "express";
-import session              from "express-session";
-import passport             from "passport";
-import cors                 from "cors";
-
-import {ControladorUsuario} from './controladores/Usuarios_c.js'
-import {rutaCarrito, rutaProductos, rutaUsuarios } from './rutas/index.js'
+import config                                       from "./configuracion/config.js";
+import express                                      from "express";
+import session                                      from "express-session";
+import passport                                     from "passport";
+import cors                                         from "cors";
+import { ControladorUsuario }                       from './controladores/Usuarios_c.js'
+import { rutaCarrito, rutaProductos, rutaUsuarios } from './rutas/index.js'
 
 const Usuario       = new ControladorUsuario();
 const app           = express();

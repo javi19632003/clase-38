@@ -1,6 +1,5 @@
 import config    from "../configuracion/config.js"
 import * as fs   from 'fs/promises'
-//import {archivo} from '../configuracion/index.js'
 
 class ContenedorArchivo {
     constructor(nombreArchivo){
@@ -152,4 +151,4 @@ class ContenedorArchivo {
 
 }
 
-export {ContenedorArchivo}
+export { ContenedorArchivo }
