@@ -1,5 +1,5 @@
 
-export { ControladorCarrito }      from './carrito_c.js'
-export { ControladorProducto }    from './productos_c.js'
-export { ControladorUsuario }     from './usuarios_c.js'
+export { ControladorCarrito }      from './Carrito_c.js'
+export { ControladorProducto }    from './Productos_c.js'
+export { ControladorUsuario }     from './Usuarios_c.js'
 
