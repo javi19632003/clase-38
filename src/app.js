@@ -10,7 +10,7 @@ const Usuario       = new ControladorUsuario();
 const app           = express();
 
 /*============================[Middlewares]============================*/
-app.use(express.static('public'))
+//app.use(express.static('public'))
 app.use(express.json())
 
 app.use(
@@ -18,7 +18,7 @@ app.use(
     secret: config.PRIVATE_KEY,
     resave: false,
     saveUninitialized: false,
-    expired: 10000,
+    cookie: { maxAge: 60000 },
   })
 );
 

@@ -36,13 +36,20 @@ passport.use(
 
   //serializar
 passport.serializeUser(function (user, done) {
-    done(null, user.email);
+    done(null, { email : user.email,
+                 nombre : user.nombre,
+                 direccion: user.direccion
+    
+    });
   });
   
   //deserializar
-  passport.deserializeUser(async function (email, done) {
-    const user =  await Servicio.veoUsuario(email);
-    done(null, user );
+  passport.deserializeUser(async function (email1, done) {
+   // const user =  await Servicio.veoUsuario(email);
+   process.nextTick(function(){
+      done(null, email1 );
+   }) 
+   
   });
   
  
