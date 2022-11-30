@@ -44,10 +44,10 @@ passport.serializeUser(function (user, done) {
   });
   
   //deserializar
-  passport.deserializeUser(async function (email1, done) {
+  passport.deserializeUser(async function (user, done) {
    // const user =  await Servicio.veoUsuario(email);
    process.nextTick(function(){
-      done(null, email1 );
+      done(null, user );
    }) 
    
   });
@@ -87,10 +87,12 @@ class ControladorUsuario {
   //Ruta para cerrar la sesión
 
   async logout (req, res){
-    req.logout();
-    //res.redirect('/login');
-    //res.json({menssage:'Usuario deslogueado'})
   
+    req.logout(function(err) {
+      if (err) { return next(err); }
+       res.redirect('/');
+    });
+   
   }
 
 

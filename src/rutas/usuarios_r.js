@@ -18,10 +18,10 @@ passport.serializeUser(function (user, done) {
 });
 
 //deserializar
-passport.deserializeUser(async function (email1, done) {
+passport.deserializeUser(async function (user, done) {
  // const user =  await Servicio.veoUsuario(email);
  process.nextTick(function(){
-    done(null, email1 );
+    done(null, user );
  }) 
  
 });
@@ -33,7 +33,7 @@ rutaUsuarios.post('/login',  passport.authenticate("local"), Usuario.veoUsuario)
 rutaUsuarios.post('/registro',  Usuario.nuevoUsuario);
 
 // Deslogueo del usuario
-rutaUsuarios.get('/logout',   Usuario.logout);
+rutaUsuarios.post('/logout',   Usuario.logout);
 
 
 rutaUsuarios.post("/pro", auth, (req, res) => {
@@ -42,8 +42,12 @@ rutaUsuarios.post("/pro", auth, (req, res) => {
 
 
 function auth(req, res, next) {
-  console.log(req.session)
-  console.log(req.user)
+ if(!req.user)
+ {
+  return res.status(401).json({
+    error: "not authenticated",
+  });
+}
    const authHeader = req.headers.authorization;
    if (!authHeader) {
      return res.status(401).json({
@@ -55,7 +59,7 @@ function auth(req, res, next) {
    jwt.verify(token, PRIVATE_KEY, (err, decoded) => {
      if (err) {
        return res.status(401).json({
-         error: "not authorized",
+         error: "not authenticated",
        });
      }
      next();

@@ -11,5 +11,6 @@ export default {
     SELECTED_DB:    process.env.SELECTED_DB || 'file',
     PRIVATE_KEY:    process.env.PRIVATE_KEY || "mi clave secreta",
     MAIL_USER:      process.env.MAIL_USER || 'camilla.gleichner@ethereal.email',
-    MAIL_PASS:      process.env.MAIL_PASS || 'G5uW8tEjyyK6ZEpKY8'
+    MAIL_PASS:      process.env.MAIL_PASS || 'G5uW8tEjyyK6ZEpKY8',
+    SESSION_MAX:    process.env.SESSION_MAX || 60000
 }
